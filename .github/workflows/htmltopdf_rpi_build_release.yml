@@ -20,7 +20,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
+        dotnet-version: 5.0.3
 
     - name: dotnet publish
       working-directory: src
@@ -29,6 +29,6 @@ jobs:
     - name: Create and push docker image
       working-directory: build/arm32v7
       run: |
-        docker build -t ${{ secrets.DOCKER_IMG_NAME }}:${GITHUB_REF#refs/tags/}-arm32v7 .
+        docker build -t ${{ secrets.DOCKER_IMG_NAME }}:${GITHUB_REF#refs/tags/}-arm32v7 --build-arg BASE_IMAGE=${{ secrets.DOCKER_BASE_IMAGE_NAME }} .
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         docker push ${{ secrets.DOCKER_IMG_NAME }}:${GITHUB_REF#refs/tags/}-arm32v7
