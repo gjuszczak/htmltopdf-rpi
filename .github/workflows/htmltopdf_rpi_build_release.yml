@@ -29,7 +29,7 @@ jobs:
     - name: Create docker image
       uses: uraimo/run-on-arch-action@v2.0.5
       with:
-        arch: arvmv7
+        arch: armv7
         distro: ubuntu18.04
         run: docker build -t ${{ secrets.DOCKER_IMG_NAME }}:${GITHUB_REF#refs/tags/}-arm32v7 ./build/arm32v7
     
