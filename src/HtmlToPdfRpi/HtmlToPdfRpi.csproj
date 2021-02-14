@@ -3,6 +3,14 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+
+    <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <UserSecretsId>841c369a-5002-4674-873d-c9769712861a</UserSecretsId>
+    <Authors>Grzegorz Juszczak</Authors>
+    <Product>HtmlToPdfRpi</Product>
+    <Copyright>Grzegorz Juszczak</Copyright>
+    <VersionPrefix>0.1.$([System.DateTime]::UtcNow.ToString(yyM)).$([System.DateTime]::UtcNow.ToString(dd))</VersionPrefix>
+    <VersionSuffix>build-$([System.DateTime]::UtcNow.ToString(HHmm))</VersionSuffix>
   </PropertyGroup>
 
   <ItemGroup>
