@@ -31,8 +31,7 @@ jobs:
       with:
         arch: arvmv7
         distro: ubuntu18.04
-        working-directory: build/arm32v7
-        run: docker build -t ${{ secrets.DOCKER_IMG_NAME }}:${GITHUB_REF#refs/tags/}-arm32v7 .
+        run: docker build -t ${{ secrets.DOCKER_IMG_NAME }}:${GITHUB_REF#refs/tags/}-arm32v7 ./build/arm32v7
     
     - name: Push docker image
       run: |
