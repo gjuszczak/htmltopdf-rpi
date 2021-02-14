@@ -25,15 +25,10 @@ jobs:
     - name: dotnet publish
       working-directory: src
       run: dotnet publish -c Release -o ../build/arm32v7/out -r linux-arm /p:Version=${GITHUB_REF#refs/tags/} HtmlToPdfRpi
-
-    - name: Create docker image
-      uses: uraimo/run-on-arch-action@v2.0.5
-      with:
-        arch: armv7
-        distro: ubuntu18.04
-        run: docker build -t ${{ secrets.DOCKER_IMG_NAME }}:${GITHUB_REF#refs/tags/}-arm32v7 ./build/arm32v7
     
-    - name: Push docker image
+    - name: Create and push docker image
+      working-directory: build/arm32v7
       run: |
+        docker build -t ${{ secrets.DOCKER_IMG_NAME }}:${GITHUB_REF#refs/tags/}-arm32v7 .
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         docker push ${{ secrets.DOCKER_IMG_NAME }}:${GITHUB_REF#refs/tags/}-arm32v7
